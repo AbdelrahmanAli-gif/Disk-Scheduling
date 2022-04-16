@@ -14,7 +14,7 @@ public class Look {
     public void lookAlgo(ArrayList<Integer> queue, int initialHeadPos) {
         int movement = 0;
         sequence = new ArrayList<>();
-        ArrayList<Integer> copy = (ArrayList<Integer>) queue.clone();
+        ArrayList<Integer> copy = new ArrayList<>(queue);
         copy.sort(Integer::compareTo);
         boolean started = false;
         int start = -1;
@@ -64,7 +64,7 @@ public class Look {
     public void cLookAlgo(ArrayList<Integer> queue, int initialHeadPos) {
         int movement = 0;
         sequence = new ArrayList<>();
-        ArrayList<Integer> copy = (ArrayList<Integer>) queue.clone();
+        ArrayList<Integer> copy = new ArrayList<>(queue);
         copy.sort(Integer::compareTo);
         boolean started = false;
         int start = -1;
