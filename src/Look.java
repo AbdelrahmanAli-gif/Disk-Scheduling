@@ -17,10 +17,10 @@ public class Look {
         ArrayList<Integer> copy = (ArrayList<Integer>) queue.clone();
         copy.sort(Integer::compareTo);
         boolean started = false;
-        int start = 0;
+        int start = -1;
         for (int i = 0; i < copy.size(); i++) {
             if (copy.get(i) >= initialHeadPos && started == false) {
-                movement+= Math.abs(initialHeadPos-copy.get(i));
+                movement += Math.abs(initialHeadPos - copy.get(i));
                 started = true;
                 start = i;
                 initialHeadPos = copy.get(i);
@@ -28,20 +28,22 @@ public class Look {
                 continue;
             }
             if (copy.get(i) >= initialHeadPos) {
-                movement+= Math.abs(initialHeadPos-copy.get(i));
+                movement += Math.abs(initialHeadPos - copy.get(i));
                 initialHeadPos = copy.get(i);
                 sequence.add(initialHeadPos);
             }
         }
-        for (int i = start; i < copy.size(); i++) {
-            copy.set(i, 0);
+        if (start >= 0) {
+            for (int i = start; i < copy.size(); i++) {
+                copy.set(i, 0);
+            }
         }
         copy.sort(Collections.reverseOrder());
         for (int i = 0; i < copy.size(); i++) {
             if (copy.get(i) == 0) {
                 break;
             }
-            movement+= Math.abs(initialHeadPos-copy.get(i));
+            movement += Math.abs(initialHeadPos - copy.get(i));
             initialHeadPos = copy.get(i);
             sequence.add(initialHeadPos);
         }
@@ -56,7 +58,7 @@ public class Look {
             }
         }
         System.out.println();
-        System.out.println("Total head Movement is "+movement+" Cylinders");
+        System.out.println("Total head Movement is " + movement + " Cylinders");
     }
 
     public void cLookAlgo(ArrayList<Integer> queue, int initialHeadPos) {
@@ -65,10 +67,10 @@ public class Look {
         ArrayList<Integer> copy = (ArrayList<Integer>) queue.clone();
         copy.sort(Integer::compareTo);
         boolean started = false;
-        int start = 0;
+        int start = -1;
         for (int i = 0; i < copy.size(); i++) {
             if (copy.get(i) >= initialHeadPos && started == false) {
-                movement+= Math.abs(initialHeadPos-copy.get(i));
+                movement += Math.abs(initialHeadPos - copy.get(i));
                 started = true;
                 start = i;
                 initialHeadPos = copy.get(i);
@@ -76,19 +78,21 @@ public class Look {
                 continue;
             }
             if (copy.get(i) >= initialHeadPos) {
-                movement+= Math.abs(initialHeadPos-copy.get(i));
+                movement += Math.abs(initialHeadPos - copy.get(i));
                 initialHeadPos = copy.get(i);
                 sequence.add(initialHeadPos);
             }
         }
-        for (int i = start; i < copy.size(); i++) {
-            copy.set(i, 0);
+        if (start >= 0) {
+            for (int i = start; i < copy.size(); i++) {
+                copy.set(i, 0);
+            }
         }
         for (int i = 0; i < copy.size(); i++) {
             if (copy.get(i) == 0) {
                 break;
             }
-            movement+= Math.abs(initialHeadPos-copy.get(i));
+            movement += Math.abs(initialHeadPos - copy.get(i));
             initialHeadPos = copy.get(i);
             sequence.add(initialHeadPos);
         }
@@ -102,7 +106,7 @@ public class Look {
             }
         }
         System.out.println();
-        System.out.println("Total head Movement is "+movement+" Cylinders");
+        System.out.println("Total head Movement is " + movement + " Cylinders");
 
     }
 
