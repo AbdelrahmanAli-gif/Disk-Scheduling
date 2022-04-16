@@ -9,25 +9,30 @@ public class SCAN {
     int totalHeadMv;
 
     // initial user Requests
-    ArrayList<Integer> reqs = new ArrayList<>();
+    ArrayList<Integer> reqs;
 
     public static void main(String[] args) {
-        new SCAN().SCAN_Start();
+        ArrayList<Integer> test = new ArrayList<>();
+        test.add(98);
+        test.add(183);
+        test.add(37);
+        test.add(122);
+        test.add(14);
+        test.add(124);
+        test.add(65);
+        test.add(67);
+
+        SCAN scan = new SCAN(test);
+        scan.SCAN_Start();
+    }
+
+    public SCAN(ArrayList<Integer> user_requests){
+        reqs = user_requests;
     }
 
     public void SCAN_Start(){
-        reqs.add(98);
-        reqs.add(183);
-        reqs.add(37);
-        reqs.add(122);
-        reqs.add(14);
-        reqs.add(124);
-        reqs.add(65);
-        reqs.add(67);
-
-
         CustomScanQueue customScanQueue = new CustomScanQueue(StaticData.INITIAL_HEAD_POINTER, reqs);
-        this.totalHeadMv = new SCAN().SCAN_Scheduling(customScanQueue);
+        this.totalHeadMv = SCAN_Scheduling(customScanQueue);
         System.out.println("Total head movement = "+this.totalHeadMv+" Cylinders");
     }
 
@@ -38,13 +43,18 @@ public class SCAN {
 
         this.sequence = new ArrayList<>();
 
-        if(startPointer.prev==null){
-            totalHeadMv += ( (customScanQueue.tail.req_value) - (startPointer.req_value) );
-        }else{
-            totalHeadMv += ( (StaticData.CYLINDER_RANGE-1) - (startPointer.req_value) );
-            totalHeadMv += ( (StaticData.CYLINDER_RANGE-1) - (customScanQueue.head.req_value) );
+        if(startPointer == customScanQueue.tail){
+            if(startPointer.req_value == StaticData.CYLINDER_RANGE-1){
+                totalHeadMv +=( (StaticData.CYLINDER_RANGE - 1) - (customScanQueue.originalSeq.get(0)) );
+            }
+        }else {
+            if (startPointer.prev == null) {
+                totalHeadMv += ((customScanQueue.tail.req_value) - (startPointer.req_value));
+            } else {
+                totalHeadMv += ((StaticData.CYLINDER_RANGE - 1) - (startPointer.req_value));
+                totalHeadMv += ((StaticData.CYLINDER_RANGE - 1) - (customScanQueue.head.req_value));
+            }
         }
-
         while (cursor != null) {
             sequence.add(cursor.req_value);
             System.out.print(cursor.req_value+" -> ");
@@ -53,12 +63,20 @@ public class SCAN {
         }
 
         if(startPointer.prev != null){
-            sequence.add(StaticData.CYLINDER_RANGE-1);
-            System.out.print(StaticData.CYLINDER_RANGE-1);
+            if(startPointer.req_value != StaticData.CYLINDER_RANGE-1){
+                sequence.add(StaticData.CYLINDER_RANGE-1);
+                System.out.print(StaticData.CYLINDER_RANGE-1);
+            }
+
             cursor = startPointer.prev;
             while (cursor!=null){
                 sequence.add(cursor.req_value);
-                System.out.print(" -> "+ cursor.req_value);
+                if(cursor.prev != null) {
+                    System.out.print(cursor.req_value + " -> ");
+                }else{
+                    System.out.print(cursor.req_value );
+
+                }
                 cursor.visited = true;
                 cursor = cursor.prev;
             }
@@ -73,6 +91,7 @@ class CustomScanQueue {
     ScanQueueNode head;
     ScanQueueNode tail;
     ScanQueueNode startHeadPointer;
+    ArrayList<Integer> originalSeq;
 
     public CustomScanQueue(int head_val, ArrayList<Integer> req_sequence) {
         head = null;
@@ -81,6 +100,7 @@ class CustomScanQueue {
 
         req_sequence.add(head_val);
         Collections.sort(req_sequence);
+        originalSeq = req_sequence;
         int req_size = req_sequence.size();
 
         ScanQueueNode prevTempCursor = null;
@@ -91,12 +111,20 @@ class CustomScanQueue {
                 head = new ScanQueueNode(req_val);
                 head.prev = null;
 
+                if(req_val == head_val){
+                    startHeadPointer = head;
+                }
+
                 prevTempCursor = head;
             } else if (i == req_size - 1) {
                 tail = new ScanQueueNode(req_val);
                 tail.prev = prevTempCursor;
                 prevTempCursor.next = tail;
                 tail.next = null;
+
+                if(req_val == head_val){
+                    startHeadPointer = tail;
+                }
 
                 prevTempCursor = tail;
             } else if (req_val == head_val) {

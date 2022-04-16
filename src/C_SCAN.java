@@ -8,24 +8,29 @@ public class C_SCAN {
     int totalHeadMv;
 
     // initial user Requests
-    ArrayList<Integer> reqs = new ArrayList<>();
+    ArrayList<Integer> reqs;
 
     public static void main(String[] args) {
-        new C_SCAN().C_SCAN_Start();
+        ArrayList<Integer> test = new ArrayList<>();
+        test.add(98);
+        test.add(183);
+        test.add(37);
+        test.add(122);
+        test.add(14);
+        test.add(124);
+        test.add(65);
+        test.add(67);
+
+        new C_SCAN(test).C_SCAN_Start();
+    }
+
+    public C_SCAN(ArrayList<Integer> user_requests){
+        reqs = user_requests;
     }
 
     public void C_SCAN_Start(){
-        reqs.add(98);
-        reqs.add(183);
-        reqs.add(37);
-        reqs.add(122);
-        reqs.add(14);
-        reqs.add(124);
-        reqs.add(65);
-        reqs.add(67);
-
         CustomScanQueue customScanQueue = new CustomScanQueue(StaticData.INITIAL_HEAD_POINTER, reqs);
-        this.totalHeadMv = new C_SCAN().CSCAN_Scheduling(customScanQueue);
+        this.totalHeadMv = CSCAN_Scheduling(customScanQueue);
         System.out.println("Total head movement = "+this.totalHeadMv+" Cylinders");
     }
 
