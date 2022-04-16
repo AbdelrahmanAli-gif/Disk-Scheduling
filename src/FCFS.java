@@ -1,15 +1,19 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class FCFS {
-    ArrayList<Integer> sequence;
+    List<Integer> sequence;
     private int headMovements;
     private int currentHead;
-    public FCFS(){
+    ArrayList<Integer> requests;
+    public FCFS(ArrayList<Integer> reqs){
         sequence = new ArrayList<>();
         headMovements = 0;
         currentHead = StaticData.INITIAL_HEAD_POINTER;
+        requests = reqs;
     }
-    public void FCFS(int[] requests) {
+    public void FCFS() {
         for(Integer request: requests){
             sequence.add(currentHead);
             headMovements += Math.abs(request - currentHead);
@@ -20,9 +24,18 @@ public class FCFS {
     }
 
     public static void main(String[] args) {
-        int[] requests = {98, 183, 37, 122, 14, 124, 65, 67};
+        ArrayList<Integer> reqs = new ArrayList<Integer>();
+        reqs.add(98);
+        reqs.add(183);
+        reqs.add(37);
+        reqs.add(122);
+        reqs.add(14);
+        reqs.add(124);
+        reqs.add(65);
+        reqs.add(67);
+
         StaticData.INITIAL_HEAD_POINTER = 53;
-        FCFS fcfs = new FCFS();
-        fcfs.FCFS(requests);
+        FCFS fcfs = new FCFS(reqs);
+        fcfs.FCFS();
     }
 }
