@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class C_SCAN {
     // 0-> 199 range of movement
-    private final int CYLINDER_RANGE = 200;
+    private int CYLINDER_RANGE = 200;
 
     //Save sequence
     private ArrayList<Integer> sequence;
