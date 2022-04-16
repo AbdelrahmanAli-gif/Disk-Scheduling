@@ -8,8 +8,20 @@ public class SCAN {
     //Save sequence
     private ArrayList<Integer> sequence;
 
+    //Total head movement
+    int totalHeadMv;
+
+    //Initial Head Pointer Value
+    int initialHeadPointer;
+
+    // initial user Requests
+    ArrayList<Integer> reqs = new ArrayList<>();
+
     public static void main(String[] args) {
-        ArrayList<Integer> reqs = new ArrayList<>();
+        new SCAN().SCAN_Start();
+    }
+
+    public void SCAN_Start(){
         reqs.add(98);
         reqs.add(183);
         reqs.add(37);
@@ -19,9 +31,11 @@ public class SCAN {
         reqs.add(65);
         reqs.add(67);
 
-        CustomScanQueue customScanQueue = new CustomScanQueue(53, reqs);
-        int totalHeadMovement = new SCAN().SCAN_Scheduling(customScanQueue);
-        System.out.println("Total head movement = "+totalHeadMovement+" Cylinders");
+        initialHeadPointer = 53;
+
+        CustomScanQueue customScanQueue = new CustomScanQueue(initialHeadPointer, reqs);
+        this.totalHeadMv = new SCAN().SCAN_Scheduling(customScanQueue);
+        System.out.println("Total head movement = "+this.totalHeadMv+" Cylinders");
     }
 
     public int SCAN_Scheduling(CustomScanQueue customScanQueue) {
