@@ -2,17 +2,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class SCAN {
-    // 0-> 199 range of movement
-    private int CYLINDER_RANGE = 200;
-
     //Save sequence
     private ArrayList<Integer> sequence;
 
     //Total head movement
     int totalHeadMv;
-
-    //Initial Head Pointer Value
-    int initialHeadPointer;
 
     // initial user Requests
     ArrayList<Integer> reqs = new ArrayList<>();
@@ -31,9 +25,8 @@ public class SCAN {
         reqs.add(65);
         reqs.add(67);
 
-        initialHeadPointer = 53;
 
-        CustomScanQueue customScanQueue = new CustomScanQueue(initialHeadPointer, reqs);
+        CustomScanQueue customScanQueue = new CustomScanQueue(StaticData.INITIAL_HEAD_POINTER, reqs);
         this.totalHeadMv = new SCAN().SCAN_Scheduling(customScanQueue);
         System.out.println("Total head movement = "+this.totalHeadMv+" Cylinders");
     }
@@ -48,8 +41,8 @@ public class SCAN {
         if(startPointer.prev==null){
             totalHeadMv += ( (customScanQueue.tail.req_value) - (startPointer.req_value) );
         }else{
-            totalHeadMv += ( (CYLINDER_RANGE-1) - (startPointer.req_value) );
-            totalHeadMv += ( (CYLINDER_RANGE-1) - (customScanQueue.head.req_value) );
+            totalHeadMv += ( (StaticData.CYLINDER_RANGE-1) - (startPointer.req_value) );
+            totalHeadMv += ( (StaticData.CYLINDER_RANGE-1) - (customScanQueue.head.req_value) );
         }
 
         while (cursor != null) {
@@ -60,8 +53,8 @@ public class SCAN {
         }
 
         if(startPointer.prev != null){
-            sequence.add(CYLINDER_RANGE-1);
-            System.out.print(CYLINDER_RANGE-1);
+            sequence.add(StaticData.CYLINDER_RANGE-1);
+            System.out.print(StaticData.CYLINDER_RANGE-1);
             cursor = startPointer.prev;
             while (cursor!=null){
                 sequence.add(cursor.req_value);
