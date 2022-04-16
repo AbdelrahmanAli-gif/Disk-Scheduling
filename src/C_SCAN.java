@@ -34,7 +34,7 @@ public class C_SCAN {
             totalHeadMv += ( (customScanQueue.tail.req_value) - (startPointer.req_value) );
         }else{
             totalHeadMv += ( (CYLINDER_RANGE-1) - (startPointer.req_value) );
-            totalHeadMv += ( (CYLINDER_RANGE-1) );
+            totalHeadMv += ( CYLINDER_RANGE );
             totalHeadMv += startPointer.prev.req_value;
         }
 
