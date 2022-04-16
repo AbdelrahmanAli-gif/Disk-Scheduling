@@ -57,8 +57,11 @@ public class C_SCAN {
         }
 
         if(startPointer.prev != null){
-            sequence.add(StaticData.CYLINDER_RANGE-1);
-            System.out.print((StaticData.CYLINDER_RANGE-1)+" -> ");
+            if(startPointer.req_value != StaticData.CYLINDER_RANGE-1){
+
+                sequence.add(StaticData.CYLINDER_RANGE-1);
+                System.out.print((StaticData.CYLINDER_RANGE-1)+" -> ");
+            }
             System.out.print(0);
             cursor = customScanQueue.head;
             while (cursor!=null && (cursor.visited!=true) ){
