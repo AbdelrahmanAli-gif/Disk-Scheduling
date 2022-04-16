@@ -3,11 +3,10 @@ import java.util.Collections;
 
 public class Look {
     private ArrayList<Integer> queue;
-    private int initialHeadPos;
     private ArrayList<Integer> sequence;
 
     public Look(int initialHeadPos) {
-        this.initialHeadPos = initialHeadPos;
+        StaticData.INITIAL_HEAD_POINTER = initialHeadPos;
         queue = new ArrayList<>();
         sequence = new ArrayList<>();
     }
@@ -100,7 +99,6 @@ public class Look {
 
             } else {
                 System.out.print(sequence.get(i) + " -> ");
-
             }
         }
         System.out.println();
@@ -116,8 +114,8 @@ public class Look {
         for (int process : Processes) {
             queue.add(process);
         }
-        l.lookAlgo(queue, l.initialHeadPos);
+        l.lookAlgo(queue, StaticData.INITIAL_HEAD_POINTER);
 
-        l.cLookAlgo(queue, l.initialHeadPos);
+        l.cLookAlgo(queue, StaticData.INITIAL_HEAD_POINTER);
     }
 }
