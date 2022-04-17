@@ -12,31 +12,47 @@ public class REAL_TIME {
     ArrayList<Integer> reqs = new ArrayList<>();
 
 
-    public void REAL_TIME_Disk_Scheduling(){
+    public void REAL_TIME_Disk_Scheduling() {
         Collections.sort(reqs);
-        for(int i=0; i<reqs.size(); i++){
-            int req_val = reqs.get(i);
-            if(i != reqs.size() - 1) {
-                System.out.print(req_val + " -> ");
-            }else{
-                System.out.println(req_val);
-            }
-            sequence.add(req_val);
+        int headPos = StaticData.INITIAL_HEAD_POINTER;
+        if (headPos != 0) {
+            totalHeadMv += Math.abs(headPos);
+            sequence.add(headPos);
+            headPos = 0;
         }
-        totalHeadMv = reqs.get(reqs.size() - 1);
-        System.out.println("Total Head Movement = "+totalHeadMv);
+
+        sequence.add(headPos);
+
+        for (int i = 0 ; i < reqs.size();i++){
+            totalHeadMv += Math.abs(headPos-reqs.get(i));
+            headPos = reqs.get(i);
+            sequence.add(headPos);
+        }
+        for (int i = 0 ; i < sequence.size();i++){
+            if (i == sequence.size()-1){
+                System.out.print(sequence.get(i));
+            }else{
+                System.out.print(sequence.get(i)+" -> ");
+            }
+        }
+        System.out.println();
+
+        System.out.println("Total Head Movement is: "+totalHeadMv);
     }
 
-    public void REAL_TIME_Start(){
+
+    public void REAL_TIME_Start() {
+
         sequence = new ArrayList<>();
-        reqs.add(98);
-        reqs.add(183);
-        reqs.add(37);
-        reqs.add(122);
-        reqs.add(14);
-        reqs.add(124);
-        reqs.add(65);
-        reqs.add(67);
+        reqs.add(38);
+        reqs.add(180);
+        reqs.add(130);
+        reqs.add(10);
+        reqs.add(50);
+        reqs.add(15);
+        reqs.add(190);
+        reqs.add(90);
+        reqs.add(150);
 
         REAL_TIME_Disk_Scheduling();
     }
