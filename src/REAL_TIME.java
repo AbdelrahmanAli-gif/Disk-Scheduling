@@ -14,30 +14,24 @@ public class REAL_TIME {
 
     public void REAL_TIME_Disk_Scheduling() {
         Collections.sort(reqs);
-        int headPos = StaticData.INITIAL_HEAD_POINTER;
-        if (headPos != 0) {
-            totalHeadMv += Math.abs(headPos);
-            sequence.add(headPos);
-            headPos = 0;
-        }
-
+        int headPos = StaticData.INITIAL_HEAD_POINTER = 0;
         sequence.add(headPos);
 
-        for (int i = 0 ; i < reqs.size();i++){
-            totalHeadMv += Math.abs(headPos-reqs.get(i));
+        for (int i = 0; i < reqs.size(); i++) {
+            totalHeadMv += Math.abs(headPos - reqs.get(i));
             headPos = reqs.get(i);
             sequence.add(headPos);
         }
-        for (int i = 0 ; i < sequence.size();i++){
-            if (i == sequence.size()-1){
+        for (int i = 0; i < sequence.size(); i++) {
+            if (i == sequence.size() - 1) {
                 System.out.print(sequence.get(i));
-            }else{
-                System.out.print(sequence.get(i)+" -> ");
+            } else {
+                System.out.print(sequence.get(i) + " -> ");
             }
         }
         System.out.println();
 
-        System.out.println("Total Head Movement is: "+totalHeadMv);
+        System.out.println("Total Head Movement is: " + totalHeadMv);
     }
 
 
