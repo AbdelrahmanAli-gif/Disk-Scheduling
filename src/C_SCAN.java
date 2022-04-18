@@ -10,6 +10,21 @@ public class C_SCAN implements Scheduler{
     // initial user Requests
     ArrayList<Integer> reqs;
 
+    @Override
+    public ArrayList<Integer> getResultingSequence() {
+        return sequence;
+    }
+
+    @Override
+    public int getTotalHeadMovements() {
+        return totalHeadMv;
+    }
+
+    @Override
+    public void start() {
+        C_SCAN_Start();
+    }
+
     public static void main(String[] args) {
         ArrayList<Integer> test = new ArrayList<>();
         test.add(98);

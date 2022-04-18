@@ -11,6 +11,20 @@ public class REAL_TIME implements Scheduler{
     // initial user Requests
     ArrayList<Integer> reqs = new ArrayList<>();
 
+    @Override
+    public ArrayList<Integer> getResultingSequence() {
+        return sequence;
+    }
+
+    @Override
+    public int getTotalHeadMovements() {
+        return totalHeadMv;
+    }
+
+    @Override
+    public void start() {
+        REAL_TIME_Start();
+    }
 
     public void REAL_TIME_Disk_Scheduling() {
         Collections.sort(reqs);
@@ -34,24 +48,13 @@ public class REAL_TIME implements Scheduler{
         System.out.println("Total Head Movement is: " + totalHeadMv);
     }
 
-
-    public void REAL_TIME_Start() {
-
-        sequence = new ArrayList<>();
-        reqs.add(38);
-        reqs.add(180);
-        reqs.add(130);
-        reqs.add(10);
-        reqs.add(50);
-        reqs.add(15);
-        reqs.add(190);
-        reqs.add(90);
-        reqs.add(150);
-
-        REAL_TIME_Disk_Scheduling();
+    public REAL_TIME(ArrayList<Integer> reqs){
+        this.reqs = reqs;
     }
 
-    public static void main(String[] args) {
-        new REAL_TIME().REAL_TIME_Start();
+
+    public void REAL_TIME_Start() {
+        sequence = new ArrayList<>();
+        REAL_TIME_Disk_Scheduling();
     }
 }

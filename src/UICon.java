@@ -68,6 +68,15 @@ public class UICon {
                 case "FCFS":
                     algo = new FCFS(requests);
                     break;
+                case "SCAN":
+                    algo = new SCAN(requests);
+                    break;
+                case "C-SCAN":
+                    algo = new C_SCAN(requests);
+                    break;
+                case "REAL-TIME":
+                    algo = new REAL_TIME(requests);
+                    break;
                 
                 default:
                     break;
@@ -93,8 +102,5 @@ public class UICon {
             outputHead.setText(total + "");
 
         }
-        
-
     }
-
 }
