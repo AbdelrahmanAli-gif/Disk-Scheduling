@@ -77,7 +77,14 @@ public class UICon {
                 case "REAL-TIME":
                     algo = new REAL_TIME(requests);
                     break;
-                
+
+                case "LOOK":
+                    algo = new Look(requests);
+                    break;
+
+                case "CLOOK":
+                    algo = new C_Look(requests);
+                    break;
                 default:
                     break;
             }
