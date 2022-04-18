@@ -44,6 +44,13 @@ public class UICon {
     private TextField outputSeq;
 
     @FXML
+    void clearBtnPressed(ActionEvent event){
+        graph.getData().clear();
+        outputHead.clear();
+        outputSeq.clear();
+    }
+
+    @FXML
     void runBtnPressed(ActionEvent event) {
         String chosenAlgo = inputAlgo.getValue();
         String[] inputSeqString = inputSeq.getText().split(" ");
@@ -84,6 +91,10 @@ public class UICon {
 
                 case "CLOOK":
                     algo = new C_Look(requests);
+                    break;
+
+                case "SSTF":
+                    algo = new SSTF(requests);
                     break;
                 default:
                     break;

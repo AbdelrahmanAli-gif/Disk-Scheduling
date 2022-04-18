@@ -17,9 +17,10 @@ public class FCFS  implements Scheduler{
     @Override
     public void start() {
         for(Integer request: requests){
-            sequence.add(currentHead);
             headMovements += Math.abs(request - currentHead);
             currentHead = request;
+            sequence.add(currentHead);
+
         }
         System.out.println(sequence);
         System.out.println(headMovements);
