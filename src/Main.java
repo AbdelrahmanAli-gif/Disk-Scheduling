@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application{
-    private Stage stage;
     private FXMLLoader loader;
     Parent root;
 

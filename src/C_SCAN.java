@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class C_SCAN {
+public class C_SCAN implements Scheduler{
     //Save sequence
     private ArrayList<Integer> sequence;
 

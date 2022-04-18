@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SSTF {
+public class SSTF implements Scheduler{
     private ArrayList<Integer> sequence = new ArrayList<>();
     private int totalHeadMovement = 0;
     private ArrayList<Integer> requests = new ArrayList<>();

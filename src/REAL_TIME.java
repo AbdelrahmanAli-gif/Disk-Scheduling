@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class REAL_TIME {
+public class REAL_TIME implements Scheduler{
     //Save sequence
     private ArrayList<Integer> sequence;
 

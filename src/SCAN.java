@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SCAN {
+public class SCAN implements Scheduler{
     //Save sequence
     private ArrayList<Integer> sequence;
 

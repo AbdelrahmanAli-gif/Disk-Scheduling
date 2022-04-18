@@ -15,7 +15,7 @@ public class UICon {
     
     }
     @FXML
-    private LineChart<String, Integer> graph;
+    private LineChart<Number, Number> graph;
 
     @FXML
     private ComboBox<String> inputAlgo;
@@ -40,15 +40,15 @@ public class UICon {
 
     @FXML
     void runBtnPressed(ActionEvent event) {
-        XYChart.Series<String, Integer> dataSeries1 = new XYChart.Series<String, Integer>();
-        // dataSeries1.setName("2014");
+        XYChart.Series<Number, Number> dataSeries1 = new XYChart.Series<Number, Number>();
+        dataSeries1.setName("2014");
 
-        dataSeries1.getData().add(new XYChart.Data<String, Integer>( "1", 567));
-        dataSeries1.getData().add(new XYChart.Data<String, Integer>( "5", 612));
-        dataSeries1.getData().add(new XYChart.Data<String, Integer>("10", 800));
-        dataSeries1.getData().add(new XYChart.Data<String, Integer>("20", 780));
-        dataSeries1.getData().add(new XYChart.Data<String, Integer>("40", 810));
-        dataSeries1.getData().add(new XYChart.Data<String, Integer>("80", 850));
+        dataSeries1.getData().add(new XYChart.Data<Number, Number>(1, 567));
+        dataSeries1.getData().add(new XYChart.Data<Number, Number>(5, 612));
+        dataSeries1.getData().add(new XYChart.Data<Number, Number>(10, 800));
+        dataSeries1.getData().add(new XYChart.Data<Number, Number>(20, 780));
+        dataSeries1.getData().add(new XYChart.Data<Number, Number>(40, 810));
+        dataSeries1.getData().add(new XYChart.Data<Number, Number>(80, 850));
 
         graph.getData().add(dataSeries1);    
     }

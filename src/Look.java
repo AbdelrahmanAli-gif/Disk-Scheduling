@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Look {
+public class Look implements Scheduler{
     private ArrayList<Integer> queue;
     private ArrayList<Integer> sequence;
 
