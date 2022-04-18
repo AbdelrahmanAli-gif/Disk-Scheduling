@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -12,7 +15,9 @@ public class UICon {
     void initialize() {
         inputAlgo.getItems().addAll("FCFS", "SSTF", "LOOK", "CLOOK", "SCAN", "CSCAN", "Real Time");
         inputAlgo.setValue(inputAlgo.getItems().get(0));
-    
+        inputCount.setText(StaticData.CYLINDER_RANGE+"");
+        inputHead.setText(StaticData.INITIAL_HEAD_POINTER+"");
+
     }
     @FXML
     private LineChart<Number, Number> graph;
@@ -40,17 +45,56 @@ public class UICon {
 
     @FXML
     void runBtnPressed(ActionEvent event) {
-        XYChart.Series<Number, Number> dataSeries1 = new XYChart.Series<Number, Number>();
-        dataSeries1.setName("2014");
+        String chosenAlgo = inputAlgo.getValue();
+        String[] inputSeqString = inputSeq.getText().split(" ");
+        ArrayList<Integer> requests = new ArrayList<>();
+        StaticData.CYLINDER_RANGE = Integer.parseInt(inputCount.getText());
+        StaticData.INITIAL_HEAD_POINTER = Integer.parseInt(inputHead.getText());
+        boolean validData = true;
 
-        dataSeries1.getData().add(new XYChart.Data<Number, Number>(1, 567));
-        dataSeries1.getData().add(new XYChart.Data<Number, Number>(5, 612));
-        dataSeries1.getData().add(new XYChart.Data<Number, Number>(10, 800));
-        dataSeries1.getData().add(new XYChart.Data<Number, Number>(20, 780));
-        dataSeries1.getData().add(new XYChart.Data<Number, Number>(40, 810));
-        dataSeries1.getData().add(new XYChart.Data<Number, Number>(80, 850));
+        for(String req: inputSeqString){
+            int reqInt = Integer.parseInt(req);
+            if(reqInt > StaticData.CYLINDER_RANGE){
+                validData = false;
+                break;
+            }
+            requests.add(reqInt);
+        }
 
-        graph.getData().add(dataSeries1);    
+        if(validData){
+            // TODO: wot
+            Scheduler algo = null;
+            switch (chosenAlgo) {
+                case "FCFS":
+                    algo = new FCFS(requests);
+                    break;
+                
+                default:
+                    break;
+            }
+    
+            algo.start();
+            ArrayList<Integer> result = algo.getResultingSequence();
+            int total = algo.getTotalHeadMovements();
+            String resultString = "";
+            XYChart.Series<Number, Number> series = new XYChart.Series<>();
+            series.setName(chosenAlgo);
+
+            for(int i = 0; i < result.size(); i++){
+                int head = result.get(i);
+                series.getData().add(new XYChart.Data<Number,Number>(i+1, head));
+                resultString += (head +"");
+                if(i != result.size() - 1)
+                    resultString += ", ";
+            }
+
+            graph.getData().add(series);
+            outputSeq.setText(resultString);
+            outputHead.setText(total + "");
+
+        }
+        
+
     }
 
 }
