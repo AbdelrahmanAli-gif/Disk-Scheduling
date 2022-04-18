@@ -37,7 +37,8 @@ public class SSTF implements Scheduler{
         Queue queue = new Queue(headPointer, requests);
         Node current = queue.startNode;
         while (current != null){
-            sequence.add(current.value);
+            if (current.value != headPointer)
+                sequence.add(current.value);
             if (current.next == null && current.previous == null)
                 current = null;
             else if (current.previous == null) {

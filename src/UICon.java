@@ -78,10 +78,10 @@ public class UICon {
                 case "SCAN":
                     algo = new SCAN(requests);
                     break;
-                case "C-SCAN":
+                case "CSCAN":
                     algo = new C_SCAN(requests);
                     break;
-                case "REAL-TIME":
+                case "Real Time":
                     algo = new REAL_TIME(requests);
                     break;
 
