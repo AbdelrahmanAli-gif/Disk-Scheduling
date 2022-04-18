@@ -17,6 +17,7 @@ public class C_Look implements Scheduler {
 
     public void cLookAlgo() {
         sequence = new ArrayList<>();
+        sequence.add(initialHeadPos);
         ArrayList<Integer> copy = new ArrayList<>(queue);
         copy.sort(Integer::compareTo);
         boolean started = false;

@@ -16,6 +16,7 @@ public class Look implements Scheduler {
 
     public void lookAlgo() {
         sequence = new ArrayList<>();
+        sequence.add(initialHeadPos);
         ArrayList<Integer> copy = new ArrayList<>(queue);
         copy.sort(Integer::compareTo);
         boolean started = false;
