@@ -25,7 +25,7 @@ public class SSTF implements Scheduler {
         requests.add(65);
         requests.add(67);
         SSTF sstf = new SSTF(requests);
-        //sstf.Start_Scheduling();
+        sstf.SSTF_Scheduling();
     }
 
 //    public void Start_Scheduling(){
@@ -62,18 +62,18 @@ public class SSTF implements Scheduler {
                 }
             }
         }
-        //printSequence();
+        printSequence();
     }
 
-//    private void printSequence(){
-//        for (int i = 0; i < sequence.size(); i++){
-//            System.out.print(sequence.get(i));
-//            if (i < sequence.size() -1)
-//                System.out.print(" -> ");
-//        }
-//        System.out.println();
-//        System.out.println("Total Head Movement = " + totalHeadMovement + " Cylinders");
-//    }
+    private void printSequence(){
+        for (int i = 0; i < sequence.size(); i++){
+            System.out.print(sequence.get(i));
+            if (i < sequence.size() -1)
+                System.out.print(" -> ");
+        }
+        System.out.println();
+        System.out.println("Total Head Movement = " + totalHeadMovement + " Cylinders");
+    }
 
     @Override
     public ArrayList<Integer> getResultingSequence() {
