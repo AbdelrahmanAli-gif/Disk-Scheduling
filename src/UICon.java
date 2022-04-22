@@ -13,11 +13,11 @@ public class UICon {
     
     @FXML
     void initialize() {
-        inputAlgo.getItems().addAll("FCFS", "SSTF", "LOOK", "CLOOK", "SCAN", "CSCAN", "Real Time");
+        inputAlgo.getItems().addAll("FCFS", "SSTF", "LOOK", "C-LOOK", "SCAN", "C-SCAN", "REAL TIME");
         inputAlgo.setValue(inputAlgo.getItems().get(0));
         inputCount.setText(StaticData.CYLINDER_RANGE+"");
         inputHead.setText(StaticData.INITIAL_HEAD_POINTER+"");
-
+        inputSeq.setText("98 183 37 122 14 124 65 67");
     }
     @FXML
     private LineChart<Number, Number> graph;
@@ -78,10 +78,10 @@ public class UICon {
                 case "SCAN":
                     algo = new SCAN(requests);
                     break;
-                case "CSCAN":
+                case "C-SCAN":
                     algo = new C_SCAN(requests);
                     break;
-                case "Real Time":
+                case "REAL TIME":
                     algo = new REAL_TIME(requests);
                     break;
 
@@ -89,7 +89,7 @@ public class UICon {
                     algo = new Look(requests);
                     break;
 
-                case "CLOOK":
+                case "C-LOOK":
                     algo = new C_Look(requests);
                     break;
 
